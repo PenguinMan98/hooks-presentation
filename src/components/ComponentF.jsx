@@ -7,7 +7,7 @@ const ComponentF = () => {
 
   return (
     <div>
-      <div>{employee} from team {team} is the CDC recommended distance away in Component F</div>
+      <div>{employee.emp1} from team {team} is the CDC recommended distance away in Component F</div>
     </div>
   );
 };

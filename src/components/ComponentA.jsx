@@ -1,9 +1,13 @@
-import React from 'react';
+import React, {useContext} from 'react';
+import {EmployeeContext, TeamContext} from '../App';
 
 const ComponentA = () => {
+  const employee = useContext(EmployeeContext);
+  const team = useContext(TeamContext);
+
   return (
     <div>
-      This is Component A
+      <div>{employee.empBest} from team {team} is the CDC recommended distance away in Component A</div>
     </div>
   );
 };
