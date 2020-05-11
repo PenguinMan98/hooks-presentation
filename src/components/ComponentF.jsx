@@ -1,24 +1,13 @@
-import React from 'react';
-import {EmployeeContext} from '../App';
-import {TeamContext} from '../App';
+import React, {useContext} from 'react';
+import {EmployeeContext, TeamContext} from '../App';
 
 const ComponentF = () => {
+  const employee = useContext(EmployeeContext);
+  const team = useContext(TeamContext);
+
   return (
     <div>
-      <TeamContext.Consumer>
-        {
-          team => {
-            return <EmployeeContext.Consumer>
-              {
-                employee => {
-                  return <div>{employee} from team {team} is the CDC recommended distance away in Component F</div>
-                }
-              }
-            </EmployeeContext.Consumer>
-          }
-        }
-      </TeamContext.Consumer>
-
+      <div>{employee} from team {team} is the CDC recommended distance away in Component F</div>
     </div>
   );
 };
