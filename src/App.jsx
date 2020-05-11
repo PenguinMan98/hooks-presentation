@@ -1,12 +1,13 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+
+import DistractionCounter from "./components/distractionCounter";
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        I love hooks!
+        <DistractionCounter />
       </header>
     </div>
   );
