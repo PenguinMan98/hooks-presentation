@@ -4,6 +4,7 @@ const DistractionCounter = () => {
   const [name, setName] = useState({first: '', last: ''});
   const [timer, setTimer] = useState(0);
   const [fullName, setFullName] = useState('');
+  const [buttonClickedOn, setButtonClickedOn] = useState(0);
   let startTime = 0;
   let tickInterval;
 
@@ -14,7 +15,7 @@ const DistractionCounter = () => {
   };
 
   const startTimer = () => {
-    setFullName(`${name.first} ${name.last}`);
+    setButtonClickedOn(Date.now());
 
     if(timer === 0){
       startTime = Date.now();
@@ -28,6 +29,10 @@ const DistractionCounter = () => {
       clearInterval(tickInterval);
     }
   }, []);
+
+  useEffect(() => {
+    setFullName(`${name.first} ${name.last}`);
+  }, [buttonClickedOn]);
 
   return (
     <div>
