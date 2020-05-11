@@ -1,13 +1,23 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+// import ComponentA from "./components/ComponentA";
+// import ComponentB from "./components/ComponentB";
+import ComponentC from "./components/ComponentC";
+
+export const EmployeeContext = React.createContext();
+export const TeamContext = React.createContext();
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        I love hooks!
-      </header>
+      <h1>The Office</h1>
+      {/*<ComponentA />*/}
+      {/*<ComponentB />*/}
+      <TeamContext.Provider value={'Trogdor'}>
+        <EmployeeContext.Provider value={'Joe Broderick'}>
+          <ComponentC />
+        </EmployeeContext.Provider>
+      </TeamContext.Provider>
     </div>
   );
 }

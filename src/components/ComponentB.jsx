@@ -1,0 +1,13 @@
+import React from 'react';
+import ComponentD from "./ComponentD";
+
+const ComponentB = () => {
+  return (
+    <div>
+      This is Component B
+      <ComponentD />
+    </div>
+  );
+};
+
+export default ComponentB;
