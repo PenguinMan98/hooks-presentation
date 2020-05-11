@@ -7,17 +7,26 @@ export const TeamContext = React.createContext();
 
 const initialState = {
   tasksForJoe: 2,
+  tasksForTyler: 3,
 };
 const reducer = (state, action) => {
   switch(action.type) {
-    case 'increment':
+    case 'incrementJoe':
       return {...state, tasksForJoe: state.tasksForJoe + 1};
-    case 'decrement':
+    case 'decrementJoe':
       if( state.tasksForJoe > 0)
         return {...state, tasksForJoe: state.tasksForJoe - 1};
       return {...state, tasksForJoe: 0};
-    case 'reset':
+    case 'resetJoe':
       return {...state, tasksForJoe: initialState.tasksForJoe};
+    case 'incrementTyler':
+      return {...state, tasksForTyler: state.tasksForTyler + 1};
+    case 'decrementTyler':
+      if( state.tasksForTyler > 0)
+        return {...state, tasksForTyler: state.tasksForTyler - 1};
+      return {...state, tasksForTyler: 0};
+    case 'resetTyler':
+      return {...state, tasksForTyler: initialState.tasksForTyler};
     default:
       return state;
   }
@@ -30,9 +39,13 @@ function App() {
     <div className="App">
       <h1>The Office</h1>
       <p>Work for Joe to do: {state.tasksForJoe} tasks.</p>
-      <button onClick={() => dispatch({type: 'decrement'})}>Complete 1 Task</button>
-      <button onClick={() => dispatch({type: 'increment'})}>Scope creep creates 1 new Task</button>
-      <button onClick={() => dispatch({type: 'reset'})}>Delegate tasks to Nate and Prachi</button>
+      <button onClick={() => dispatch({type: 'decrementJoe'})}>Complete 1 Task</button>
+      <button onClick={() => dispatch({type: 'incrementJoe'})}>Scope creep creates 1 new Task</button>
+      <button onClick={() => dispatch({type: 'resetJoe'})}>Delegate tasks to Nate and Prachi</button>
+      <p>Work for Tyler to do: {state.tasksForTyler} tasks.</p>
+      <button onClick={() => dispatch({type: 'decrementTyler'})}>Complete 1 Task</button>
+      <button onClick={() => dispatch({type: 'incrementTyler'})}>Scope creep creates 1 new Task</button>
+      <button onClick={() => dispatch({type: 'resetTyler'})}>Delegate tasks to Nate and Prachi</button>
       <br />
       <br />
       <br />
