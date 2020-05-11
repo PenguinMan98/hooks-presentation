@@ -6,6 +6,7 @@ import ComponentC from './components/ComponentC';
 
 export const EmployeeContext = React.createContext();
 export const TeamContext = React.createContext();
+export const CountContext = React.createContext();
 
 const initialState = {
   tasks: 2,
@@ -28,6 +29,7 @@ const reducer = (state, action) => {
 
 function App() {
   const [state, dispatch] = useReducer( reducer, initialState );
+  const employees = {'emp1':'Joe Broderick','emp2':'Tyler Hanson','empBest':'Jaden He'};
 
   return (
     <div className="App">
@@ -41,13 +43,15 @@ function App() {
       <br />
       <br />
       <br />
-      <TeamContext.Provider value={'Trogdor'}>
-        <EmployeeContext.Provider value={{'emp1':'Joe Broderick','emp2':'Tyler Hanson','empBest':'Jaden He'}}>
-          <ComponentA />
-          <ComponentB />
-          <ComponentC />
-        </EmployeeContext.Provider>
-      </TeamContext.Provider>
+      <CountContext.Provider value={{numTasks: state.tasks, taskDispatcher: dispatch}}>
+        <TeamContext.Provider value={'Trogdor'}>
+          <EmployeeContext.Provider value={employees}>
+            <ComponentA />
+            <ComponentB />
+            <ComponentC />
+          </EmployeeContext.Provider>
+        </TeamContext.Provider>
+      </CountContext.Provider>
     </div>
   );
 }
