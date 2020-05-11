@@ -1,26 +1,15 @@
 import React, { useState } from 'react';
 
 const DistractionCounter = () => {
-  const [count, setCount] = useState(0);
+  const [name, setName] = useState({first: '', last: ''});
 
-  const addFive = () => {
-    for(let i = 0; i < 5; i++) {
-      setCount( count + 1 );
-    }
-  };
-
-  // const addFive = () => {
-  //   for(let i = 0; i < 5; i++) {
-  //     setCount(prev => prev + 1);
-  //   }
-  // };
-  //
   return (
     <div>
-      Number of Distractions Today:
-      <button onClick={addFive}>
-        {count}
-      </button>
+      Who is distracting me now?<br />
+      <input type="text" onChange={e => setName({first: e.target.value})} value={name.first} /><br />
+      <input type="text" onChange={e => setName({last: e.target.value})} value={name.last} /><br />
+      {name.first} {name.last} is!<br />
+      {/*{JSON.stringify(name)}*/}
     </div>
   );
 };
