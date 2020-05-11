@@ -5,32 +5,34 @@ import ComponentC from "./components/ComponentC";
 export const EmployeeContext = React.createContext();
 export const TeamContext = React.createContext();
 
-const initialState = 2;
+const initialState = {
+  tasksForJoe: 2,
+};
 const reducer = (state, action) => {
-  switch(action) {
+  switch(action.type) {
     case 'increment':
-      return state + 1;
+      return {...state, tasksForJoe: state.tasksForJoe + 1};
     case 'decrement':
-      if( state > 0)
-        return state - 1;
-      return 0;
+      if( state.tasksForJoe > 0)
+        return {...state, tasksForJoe: state.tasksForJoe - 1};
+      return {...state, tasksForJoe: 0};
     case 'reset':
-      return initialState;
+      return {...state, tasksForJoe: initialState.tasksForJoe};
     default:
       return state;
   }
 };
 
 function App() {
-  const [count, dispatch] = useReducer( reducer, initialState );
+  const [state, dispatch] = useReducer( reducer, initialState );
 
   return (
     <div className="App">
       <h1>The Office</h1>
-      <p>Work for Joe to do: {count} tasks.</p>
-      <button onClick={() => dispatch('decrement')}>Complete 1 Task</button>
-      <button onClick={() => dispatch('increment')}>Scope creep creates 1 new Task</button>
-      <button onClick={() => dispatch('reset')}>Delegate tasks to Nate and Prachi</button>
+      <p>Work for Joe to do: {state.tasksForJoe} tasks.</p>
+      <button onClick={() => dispatch({type: 'decrement'})}>Complete 1 Task</button>
+      <button onClick={() => dispatch({type: 'increment'})}>Scope creep creates 1 new Task</button>
+      <button onClick={() => dispatch({type: 'reset'})}>Delegate tasks to Nate and Prachi</button>
       <br />
       <br />
       <br />
