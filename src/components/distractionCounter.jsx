@@ -1,28 +1,18 @@
-import React, {Component} from 'react';
+import React, { useState } from 'react';
 
-class DistractionCounter extends Component {
-  constructor(props) {
-    super(props);
+const DistractionCounter = () => {
+  const [count, setCount] = useState(0);
 
-    this.state = {
-      count: 0,
-    }
-  }
-
-  incrementCount = () => {
-    this.setState({
-      count: this.state.count + 1
-    });
-  };
-
-  render() {
-    return (
-      <div>
-        Number of Distractions today:
-        <button onClick={this.incrementCount}>{this.state.count}</button>
-      </div>
-    );
-  }
-}
+  return (
+    <div>
+      Number of Distractions Today:
+      <button onClick={() => {
+        setCount(count + 1);
+      }}>
+        {count}
+      </button>
+    </div>
+  );
+};
 
 export default DistractionCounter;
